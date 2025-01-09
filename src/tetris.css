@@ -1,0 +1,17 @@
+.cnvs {
+  padding: 20px;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  font-family: sans-serif;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+

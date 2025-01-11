@@ -33,6 +33,7 @@ export default function TetrisPreview({ next }: ITetrisPreviewProps ) {
             <p>&uarr; - rotate</p>
             <p>&larr;, &rarr; - move</p>
             <p>&darr; - accelerate down</p>
+            <p><b>p</b> - pause</p>
         </div>
         <div>Preview</div>
         <canvas ref={canvasRef} width={PREVIEW_SIZE.X * OUT_CELL} height={PREVIEW_SIZE.Y * OUT_CELL} />

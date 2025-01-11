@@ -43,11 +43,12 @@ export default function TetrisCanvas() {
                     nextDrop(counts);
                 }
                 return;
-            }
+            } 
             killDropTimer();
-            setDropTimer();
+            if (e.key !== "p") {
+                setDropTimer();
+            }
         }
-        e.preventDefault();
     }
 
     const upHandler = (e: KeyboardEvent) => {

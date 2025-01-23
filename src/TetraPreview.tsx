@@ -25,7 +25,7 @@ export default function TetrisPreview({ next }: ITetrisPreviewProps ) {
             context.translate(-2 * OUT_CELL, 0);
             next.moveAndPaint(context);
         }
-     }, [next]); // Empty array ensures that effect is only run on mount and unmount
+     }, [next]);
     
     return <div className='preview' style={{ justifyContent: 'flex-end' }}>
         <div style={{flexGrow:"1"}}>

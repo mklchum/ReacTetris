@@ -7,7 +7,6 @@ import TetrisPreview from './TetraPreview';
 import TetrisStat, { Statistics } from './TetraStat';
 
 export const SIZE = { X: 10, Y: 25 };
-
 export const CELL = 22;
 export const OUT_CELL = 24;
 
@@ -93,6 +92,7 @@ export default function TetrisCanvas() {
             let start: number;
             let animationStep = 1;
             const doStep = (time: number) => {
+                
                 start = start || time;
                 const elapsed = time - start;
                 if (2 * animationStep >= CELL ) {
@@ -101,7 +101,7 @@ export default function TetrisCanvas() {
                     drawBoard();
                     resolve(rowToGo);
                     return;
-                }else if (elapsed * 0.01 > animationStep) {
+                }else if (elapsed * 0.02 > animationStep) {
                     animationStep++;
                     for (let j = 0; j <= SIZE.X; j++) {
                         context.clearRect(j * OUT_CELL - animationStep,  rowToGo * OUT_CELL, 2 * animationStep , CELL);
@@ -109,6 +109,7 @@ export default function TetrisCanvas() {
                 }
                 requestAnimationFrame(doStep);
             };
+            
             requestAnimationFrame(doStep);
         });
     } 

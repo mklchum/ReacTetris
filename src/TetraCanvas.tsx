@@ -7,24 +7,26 @@ import TetrisPreview from './TetraPreview';
 import TetrisStat, { Statistics } from './TetraStat';
 
 export const SIZE = { X: 10, Y: 25 };
-export const CELL = 22;
-export const OUT_CELL = 24;
+export const CELL = { x: 22, y: 24 };
+export const OUT_CELL = { x: 24, y: 26 };
 
 export const board = new Array(SIZE.Y);
 for (let i = 0; i < SIZE.Y; i++) {
     board[i] =  Array(SIZE.X).fill(0); // clr[0] - background color
 }
-let falling: Tetromino| undefined  = Tetromino.getNext();
+
+let falling: Tetromino | undefined = Tetromino.getNext();
 let next: Tetromino = Tetromino.getNext();
 let fastDropping = false;
-const speeds = [700, 500, 400, 300, 200, 100, 70];
 
-const counts: Statistics = new Statistics();
 
 export default function TetrisCanvas() {
+    const speeds = [700, 500, 400, 300, 200, 100, 70];
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const dropTimer = useRef<NodeJS.Timeout | undefined>(undefined);
-    const [,setState] = useState<number|undefined>(falling?.top); 
+    const [, setState] = useState<number | undefined>(falling?.top); 
+    const [counts, ] = useState<Statistics> (new Statistics());
+
 
     const downHandler = (e: KeyboardEvent) => {
         const context = canvasRef?.current?.getContext('2d');
@@ -62,7 +64,7 @@ export default function TetrisCanvas() {
             for (let i = 0; i < SIZE.Y; i++) {
                 for (let j = 0; j < SIZE.X; j++) {
                     context.fillStyle = clr[board[i][j]];
-                    context.fillRect(j * OUT_CELL, i * OUT_CELL, CELL, CELL);
+                    context.fillRect(j * OUT_CELL.x, i * OUT_CELL.y, CELL.x, CELL.y);
                 }
             }
             first?.moveAndPaint(context);
@@ -95,7 +97,7 @@ export default function TetrisCanvas() {
                 
                 start = start || time;
                 const elapsed = time - start;
-                if (2 * animationStep >= CELL ) {
+                if (2 * animationStep >= CELL.x ) {
                     for (let j = rowToGo; j > 0; j--) board[j] = board[j - 1];
                     board[0] = Array(SIZE.X).fill(0);
                     drawBoard();
@@ -104,7 +106,7 @@ export default function TetrisCanvas() {
                 }else if (elapsed * 0.02 > animationStep) {
                     animationStep++;
                     for (let j = 0; j <= SIZE.X; j++) {
-                        context.clearRect(j * OUT_CELL - animationStep,  rowToGo * OUT_CELL, 2 * animationStep , CELL);
+                        context.clearRect(j * OUT_CELL.x - animationStep,  rowToGo * OUT_CELL.y, 2 * animationStep , CELL.y);
                     }
                 }
                 requestAnimationFrame(doStep);
@@ -149,7 +151,7 @@ export default function TetrisCanvas() {
 
     return <div className="cnvs">
         <TetrisPreview next={next}/>
-        <canvas ref={canvasRef} width={SIZE.X * OUT_CELL} height={SIZE.Y * OUT_CELL} />
+        <canvas ref={canvasRef} width={SIZE.X * OUT_CELL.x} height={SIZE.Y * OUT_CELL.y} />
         <TetrisStat counts ={ counts } />
     </div>;
 }

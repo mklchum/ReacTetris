@@ -44,10 +44,10 @@ export class Tetromino {
                 return;
             }
             context.fillStyle = clr[0];
-            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL, (this.offset.y + cell.y) * OUT_CELL, CELL, CELL));
+            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL.x, (this.offset.y + cell.y) * OUT_CELL.y, CELL.x, CELL.y));
             this.cells = cells;
             context.fillStyle = clr[this.color];
-            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL, (this.offset.y + cell.y) * OUT_CELL, CELL, CELL));
+            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL.x, (this.offset.y + cell.y) * OUT_CELL.y, CELL.x, CELL.y));
         }
     }
 
@@ -59,11 +59,11 @@ export class Tetromino {
                 return false;
             }
             context.fillStyle = clr[0]; // erase
-            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL, (this.offset.y + cell.y) * OUT_CELL, CELL, CELL));
+            this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL.x, (this.offset.y + cell.y) * OUT_CELL.y, CELL.x, CELL.y));
             this.offset = newOffset;
         }
         context.fillStyle = clr[this.color];
-        this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL, (this.offset.y + cell.y) * OUT_CELL, CELL, CELL));
+        this.cells.map(cell => context.fillRect((this.offset.x + cell.x) * OUT_CELL.x, (this.offset.y + cell.y) * OUT_CELL.y, CELL.x, CELL.y));
         return true;
     }
 

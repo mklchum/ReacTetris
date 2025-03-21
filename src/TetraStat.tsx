@@ -24,21 +24,22 @@ export default function TetrisStat({counts} :ITetrisStatProperties ) {
         if (context) {
             context.resetTransform();
             context.font = "bold 36px serif";
-            context.scale(0.333, 0.333);
+            context.scale(0.5, 0.5);
             context.fillStyle = clr[0];
-            context.fillRect(0, 0, 10 * OUT_CELL, 28 * OUT_CELL);
-            context.translate(-2 * OUT_CELL, 0);
+            context.fillRect(0, 0, 10 * OUT_CELL.x, STAT_SIZE.Y * OUT_CELL.y);
+            context.translate(-2 * OUT_CELL.x, 0);
             for (let i = 1; i <= 7; i++) {
                 Tetromino.getNext(i).moveAndPaint(context);
-                context.fillText("" + counts.itemsCount[i],  8.5 * OUT_CELL, 2.5 * OUT_CELL);
-                context.translate(0, 4 * OUT_CELL);
+                context.fillText("" + counts.itemsCount[i],  8.5 * OUT_CELL.x, 2.5 * OUT_CELL.y);
+                context.translate(0, 4 * OUT_CELL.y);
             }
         }
     }, [counts.totalItems]); // Empty array ensures that effect is only run on mount and unmount
 
-    return <div className='preview'>
+    return <div className='preview' style={{width: 250}}>
         <div style={{color: "yellow" }}>Statistics</div>
-        <canvas ref={canvasRef} width={STAT_SIZE.X * OUT_CELL} height={STAT_SIZE.Y * OUT_CELL / 2} />
+        <canvas ref={canvasRef} width={STAT_SIZE.X * OUT_CELL.x} height={STAT_SIZE.Y * OUT_CELL.y / 2} />
+        <div style={{flexGrow:"1"}}>&nbsp;</div>
         <div>LEVEL: {counts.level} </div> 
         <div>&nbsp;</div>
         <div>Total pieces: {counts.totalItems}</div>

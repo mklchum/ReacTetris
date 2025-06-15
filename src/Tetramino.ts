@@ -1,4 +1,4 @@
-import { board, CELL, OUT_CELL, SIZE } from "./TetraCanvas";
+import { board, CELL, OUT_CELL, SIZE } from "./globals";
 
 export type Point = { x: number; y: number };
 const rotatePt = (p: Point) => { return { x: -p.y, y: p.x }; };

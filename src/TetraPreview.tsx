@@ -2,7 +2,7 @@
 import { useRef, useEffect} from 'react';
 import "./tetris.css";
 import { clr, Tetromino } from './Tetramino';
-import { CELL, OUT_CELL } from './TetraCanvas';
+import { CELL, OUT_CELL } from './globals';
 
 const PREVIEW_SIZE = { X: 6, Y: 4 };
 

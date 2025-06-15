@@ -3,7 +3,7 @@
 import { useRef, useEffect} from 'react';
 import "./tetris.css";
 import { clr, Tetromino } from './Tetramino';
-import { OUT_CELL } from './TetraCanvas';
+import { OUT_CELL } from './globals';
 
 export class Statistics {
     public totalItems = 0;
@@ -34,7 +34,7 @@ export default function TetrisStat({counts} :ITetrisStatProperties ) {
                 context.translate(0, 4 * OUT_CELL.y);
             }
         }
-    }, [counts.totalItems]); // Empty array ensures that effect is only run on mount and unmount
+    }, [counts.totalItems]); 
 
     return <div className='preview' style={{width: 250}}>
         <div style={{color: "yellow" }}>Statistics</div>
